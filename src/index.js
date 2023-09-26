@@ -1,3 +1,3 @@
 import { build } from 'biiif';
 
-build('images', 'http://example.com/images');
+build('images/merian', 'http://localhost/images/merian');
