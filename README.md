@@ -1,2 +1,3 @@
 # duke-iiif
-Initial experiments
+
+Initial experiments.
