@@ -1,16 +1,27 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "checkJs": true,
     "composite": true,
-    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "5.0",
+    "importsNotUsedAsValues": "error",
+    "incremental": false,
+    "isolatedModules": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "resolveJsonModule": true,
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "types": ["svelte"]
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

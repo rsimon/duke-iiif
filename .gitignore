@@ -1,3 +1,4 @@
+dist/
 node_modules/
 data/annotations/*
 !data/annotations/.gitkeep

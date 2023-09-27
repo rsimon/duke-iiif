@@ -1,13 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import OpenSeadragon from 'openseadragon';
-
+  import { OpenSeadragonAnnotator } from '@annotorious/svelte/src';
+  
   let container: HTMLDivElement;
+
+  let viewer: OpenSeadragon.Viewer;
 
   onMount(() => {
     const imagename = location.hash.substring(1) || 'book-of-fortresses/caminha2';
 
-    const viewer = OpenSeadragon({
+    viewer = OpenSeadragon({
       element: container,
       prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/',
       crossOriginPolicy: 'Anonymous',
@@ -23,6 +26,8 @@
   <div 
     bind:this={container}
     class="openseadragon" />
+
+  <OpenSeadragonAnnotator viewer={viewer} />
 </div>
 
 <style>
