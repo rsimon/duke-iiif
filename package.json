@@ -5,7 +5,8 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "tile": "node src/tile-images.js",
+    "convert": "node src/convert-annotations.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
