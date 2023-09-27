@@ -54,11 +54,12 @@ const convertOne = (filename) => {
     }
   });
 
-  fs.writeFileSync(`./data/annotations/${source}.w3c.json`, JSON.stringify(annotations, null, 2));
+  fs.writeFileSync(`../data/annotations/lisbon/${source}.w3c.json`, JSON.stringify(annotations, null, 2));
 
   return annotations;
 }
 
+/*
 const FILES = [
   'caminha2',
   'castelo_bom1',
@@ -76,7 +77,13 @@ const FILES = [
   'segura1',
   'vinhais1'
 ];
+*/
+
+const FILES = [
+  'Lisbon_1600_COT_Rumsey',
+  'Merian_Lisbon_38'
+];
 
 for (const file of FILES) {
-  convertOne(`./data/annotations/${file}.jpg_poly.json`);
+  convertOne(`../data/annotations/lisbon/${file}.jpg_poly.json`);
 }
