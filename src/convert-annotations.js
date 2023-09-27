@@ -5,15 +5,26 @@ const convertOne = (filename) => {
   const data = JSON.parse(str);
 
   const source = filename.substring(filename.lastIndexOf('/') + 1, filename.indexOf('.jpg'));
-  console.log(source);
 
   // Crosswalk 'objects' to W3C annotations
   const annotations = data.objects.map(obj => {
     const { 
       id,
       tags,
-      points
+      points,
+      classTitle,
+      createdAt,
+      updatedAt,
+      labelerLogin
     } = obj;
+
+    const classBody = {
+      purpose: 'classifying',
+      value: classTitle,
+      created: createdAt,
+      updated: updatedAt,
+      creator: labelerLogin
+    }
 
     const tagBodies = tags.map(tag => ({
       id: tag.id,
@@ -38,7 +49,7 @@ const convertOne = (filename) => {
       '@context': 'http://www.w3.org/ns/anno.jsonld',
       type: 'Annotation',
       id,
-      body: tagBodies,
+      body: [classBody, ...tagBodies],
       target
     }
   });
