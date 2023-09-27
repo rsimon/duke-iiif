@@ -54,7 +54,7 @@ const convertOne = (filename) => {
     }
   });
 
-  fs.writeFileSync(`./annotations/${source}.w3c.json`, JSON.stringify(annotations, null, 2));
+  fs.writeFileSync(`./data/annotations/${source}.w3c.json`, JSON.stringify(annotations, null, 2));
 
   return annotations;
 }
@@ -78,5 +78,5 @@ const FILES = [
 ];
 
 for (const file of FILES) {
-  convertOne(`./annotations/${file}.jpg_poly.json`);
+  convertOne(`./data/annotations/${file}.jpg_poly.json`);
 }

@@ -1,15 +1,34 @@
 {
-  "name": "duke-iiif",
+  "name": "book-of-fortresses-site",
   "version": "0.1.0",
-  "description": "Initial experiments",
+  "private": true,
+  "description": "SPA for Duke Book of Fortresses demo",
+  "main": "src/index.ts",
   "type": "module",
-  "main": "src/index.js",
   "scripts": {
-    "tile": "node src/tile-images.js",
-    "convert": "node src/convert-annotations.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsimon/duke-iiif.git"
+  },
+  "author": "Rainer Simon",
+  "bugs": {
+    "url": "https://github.com/rsimon/duke-iiif/issues"
+  },
+  "homepage": "https://github.com/rsimon/duke-iiif#readme",
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.4.6",
+    "@tsconfig/svelte": "^5.0.0",
+    "svelte": "^4.2.1",
+    "svelte-check": "^3.4.6",
+    "tslib": "^2.6.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.9"
   },
   "dependencies": {
-    "biiif": "^1.0.7"
   }
 }

@@ -1,6 +1,6 @@
 node_modules/
-annotations/*
-!annotations/.gitkeep
-images/*
-!images/.gitkeep
+data/annotations/*
+!data/annotations/.gitkeep
+data/images/*
+!data/images/.gitkeep
 .DS_Store

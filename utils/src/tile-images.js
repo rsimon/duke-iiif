@@ -1,8 +1,8 @@
 import { build } from 'biiif';
 
 const IMAGES = [
-  // 'caminha2',
-  // 'castelo_bom1',
+  'caminha2',
+  'castelo_bom1',
   'castelo_branco1',
   'chaves2',
   'lapela1',
@@ -20,5 +20,5 @@ const IMAGES = [
 ]
 
 for (const image of IMAGES) {
-  build(`images/book_of_fortresses/${image}`, `https://iiif.rainersimon.io/book-of-fortresses/${image}`);
+  build(`data/images/book_of_fortresses/${image}`, `https://iiif.rainersimon.io/book-of-fortresses/${image}`);
 }
