@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import OpenSeadragon from 'openseadragon';
-  import { OpenSeadragonAnnotator } from '@annotorious/svelte/src';
+  import { OpenSeadragonAnnotator } from '@annotorious/svelte';
+  import Sidebar from './Sidebar.svelte';
   
   let container: HTMLDivElement;
 
@@ -23,11 +24,13 @@
 </script>
 
 <div class="container">
-  <div 
+  <div
     bind:this={container}
     class="openseadragon" />
 
-  <OpenSeadragonAnnotator viewer={viewer} />
+  <OpenSeadragonAnnotator viewer={viewer}>
+    <Sidebar />
+  </OpenSeadragonAnnotator>
 </div>
 
 <style>
