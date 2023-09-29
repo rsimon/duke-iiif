@@ -2,8 +2,13 @@
   import { ImageAnnotation } from '@annotorious/openseadragon';
   import { SvelteAnnotator } from '@annotorious/svelte';
   import { getContext } from 'svelte';
+  import { createStyle } from './style';
 
   const anno = getContext<SvelteAnnotator<ImageAnnotation>>('anno');
+
+  const { style, legend } = createStyle();
+
+  anno.setFormatter(style);
 
   const { store, viewport } = anno.state;
 
@@ -44,7 +49,9 @@
             {label} <span class="count">{count}</span>
           </span>
           <div class="meter-wrapper">
-            <div class="meter-value" style={`width: ${100 * (count / max)}%`} />
+            <div 
+              class="meter-value" 
+              style={`width: ${100 * (count / max)}%; background-color:${$legend[label]}`} />
           </div> 
         </li>
       {/each}
@@ -65,6 +72,10 @@
     padding: 0;
   }
 
+  li {
+    margin-bottom: 0.8em;
+  }
+
   .label {
     font-size: 12px;
   }
@@ -77,8 +88,8 @@
 
   .meter-wrapper {
     box-sizing: border-box;
-    margin: 5px 0;
-    padding: 0 2px;
+    margin: 0.3em 0;
+    padding: 0 1px;
     position: relative;
     width: 100%;
   }
