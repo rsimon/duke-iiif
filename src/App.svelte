@@ -2,8 +2,9 @@
   import { onMount } from 'svelte';
   import OpenSeadragon from 'openseadragon';
   import { OpenSeadragonAnnotator } from '@annotorious/svelte';
-  import Sidebar from './Sidebar.svelte';
-  
+  import Storage from './Storage/Storage.svelte';
+  import { Inspector } from './Inspector';
+
   let container: HTMLDivElement;
 
   let viewer: OpenSeadragon.Viewer;
@@ -29,7 +30,8 @@
     class="openseadragon" />
 
   <OpenSeadragonAnnotator viewer={viewer}>
-    <Sidebar />
+    <Storage url="caminha2.w3c.json" />
+    <Inspector />
   </OpenSeadragonAnnotator>
 </div>
 
