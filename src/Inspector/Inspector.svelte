@@ -117,6 +117,6 @@
   }
 
   .meter-value-full {
-    opacity: 0.45;
+    opacity: 0.4;
   }
 </style>
