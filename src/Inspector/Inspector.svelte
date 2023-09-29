@@ -40,7 +40,7 @@
   }
 </script>
 
-<div class="inspector panel">
+<div class="overlay inspector">
   {#if totals?.length > 0}
     {@const max = totals[0][1]}
     <ul class="stats">

@@ -13,7 +13,7 @@ html, body, #app {
   outline: none;
 }
 
-.panel {
+.overlay {
   backdrop-filter: blur(14px);
   background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.12);

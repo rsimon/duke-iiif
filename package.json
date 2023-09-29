@@ -34,6 +34,7 @@
   "dependencies": {
     "@annotorious/openseadragon": "file:../../annotorious/annotorious-v3/packages/annotorious-openseadragon",
     "@annotorious/svelte": "file:../../annotorious/annotorious-v3/packages/annotorious-svelte",
-    "openseadragon": "^4.1.0"
+    "openseadragon": "^4.1.0",
+    "svelte-time": "^0.8.0"
   }
 }
