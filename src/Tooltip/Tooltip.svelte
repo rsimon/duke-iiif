@@ -3,10 +3,13 @@
   import { Annotation, ImageAnnotation } from '@annotorious/openseadragon';
   import { SvelteAnnotator } from '@annotorious/svelte';
   import Time from 'svelte-time';
+  import { colorTheme } from '../colorTheme';
 
   const anno = getContext<SvelteAnnotator<ImageAnnotation>>('anno');
 
   const { store, hover } = anno.state;
+
+  const { legend } = colorTheme;
 
   const viewer = getContext<OpenSeadragon.Viewer>('viewer');
 
@@ -55,8 +58,13 @@
 </script>
 
 {#if $hover}
-  <div class="overlay tooltip" style={`left:${left}px; top:${top}px`}>
-    <h1>{getClass(hovered)}</h1>
+  <div 
+    class="overlay tooltip" 
+    style={`left:${left}px; top:${top}px;`}>
+    <h1>
+      <span class="pip" style={`background-color:${$legend[getClass(hovered)]}`} />
+      {getClass(hovered)}
+    </h1>
     <ul class="tags">
       {#each getTags(hovered) as tag}
         <li>{tag.substring(tag.indexOf(':') + 1).trim()}</li>
@@ -77,8 +85,10 @@
 
 <style>
   .overlay.tooltip {
+    border-style: solid;
+    border-width: 4px 0 0 0;
     margin: 10px 0 0 10px;
-    max-width: 280px;
+    max-width: 290px;
     padding: 10px;
     pointer-events: none;
     position: absolute;
@@ -89,6 +99,19 @@
     font-size: 14px;
     margin: 0 1em 0 0;
     padding: 0 0 0.5em 0;
+    max-width: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .overlay.tooltip .pip {
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0.2em 1px 0;
+    height: 9px;
+    vertical-align: baseline;
+    width: 9px;
   }
 
   ul {

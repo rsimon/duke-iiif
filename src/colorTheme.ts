@@ -18,7 +18,7 @@ export const AdobeCategorical12 = [
 
 const Palette = AdobeCategorical12;
 
-export const createStyle = () => { 
+const createTheme = () => { 
   
   const colors = new Map<string, Color>();
 
@@ -48,3 +48,5 @@ export const createStyle = () => {
   return { style, legend };
 
 }
+
+export const colorTheme = createTheme();

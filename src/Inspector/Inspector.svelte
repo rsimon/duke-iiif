@@ -2,11 +2,11 @@
   import { ImageAnnotation } from '@annotorious/openseadragon';
   import { SvelteAnnotator } from '@annotorious/svelte';
   import { getContext } from 'svelte';
-  import { createStyle } from './style';
+  import { colorTheme } from '../colorTheme';
 
   const anno = getContext<SvelteAnnotator<ImageAnnotation>>('anno');
 
-  const { style, legend } = createStyle();
+  const { style, legend } = colorTheme;
 
   anno.setFormatter(style);
 
