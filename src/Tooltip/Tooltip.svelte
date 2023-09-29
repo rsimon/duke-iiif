@@ -59,7 +59,7 @@
     <h1>{getClass(hovered)}</h1>
     <ul class="tags">
       {#each getTags(hovered) as tag}
-        <li>{tag}</li>
+        <li>{tag.substring(tag.indexOf(':') + 1).trim()}</li>
       {/each}
     </ul>
 
@@ -78,9 +78,54 @@
 <style>
   .overlay.tooltip {
     margin: 10px 0 0 10px;
+    max-width: 280px;
     padding: 10px;
     pointer-events: none;
     position: absolute;
     width: auto;
+  }
+
+  .overlay.tooltip h1 {
+    font-size: 14px;
+    margin: 0 1em 0 0;
+    padding: 0 0 0.5em 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  ul.tags:empty {
+    display: none;
+  }
+
+  ul.tags {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    gap: 0.4em;
+    padding: 0.2em 0;
+  }
+
+  ul.tags li {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+    padding: 1px 3px;
+  }
+
+  .footer {
+    color: rgba(255, 255, 255, 0.45);
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    justify-content: space-between;
+    padding-top: 0.4em;
   }
 </style>
