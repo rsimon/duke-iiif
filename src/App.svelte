@@ -9,9 +9,9 @@
 
   let viewer: OpenSeadragon.Viewer;
 
-  onMount(() => {
-    const imagename = location.hash.substring(1) || 'book-of-fortresses/caminha2';
+  const imagename = location.hash.substring(1) || 'book-of-fortresses/caminha2';
 
+  onMount(() => {
     viewer = OpenSeadragon({
       element: container,
       prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/',
@@ -30,7 +30,7 @@
     class="openseadragon" />
 
   <OpenSeadragonAnnotator viewer={viewer}>
-    <Storage url="caminha2.w3c.json" />
+    <Storage url={`https://iiif.rainersimon.io/annotations/${imagename}.w3c.json`} />
     <Inspector />
   </OpenSeadragonAnnotator>
 </div>
