@@ -24,7 +24,7 @@
     });
 
     const sorted = Array.from(histogram.entries());
-    sorted.sort((a, b) => a[1] - b[1]);
+    sorted.sort((a, b) => b[1] - a[1]);
 
     return sorted;
   }
@@ -35,12 +35,21 @@
 </script>
 
 <div class="inspector panel">
-  Hello World 
-  <ul>
-    {#each totals as [label, count]}
-      <li>{label}: {count}</li>
-    {/each}
-  </ul>
+  {#if totals?.length > 0}
+    {@const max = totals[0][1]}
+    <ul class="stats">
+      {#each totals as [label, count]}
+        <li>
+          <span class="label">
+            {label} <span class="count">{count}</span>
+          </span>
+          <div class="meter-wrapper">
+            <div class="meter-value" style={`width: ${100 * (count / max)}%`} />
+          </div> 
+        </li>
+      {/each}
+    </ul>
+  {/if}
 </div>
 
 <style>
@@ -48,5 +57,35 @@
     position: absolute;
     right: 20px;
     top: 20px;
+  }
+
+  ul {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .count {
+    color: rgba(255, 255, 255, 0.45);
+    display: inline-block;
+    margin-left: 0.3em;
+  }
+
+  .meter-wrapper {
+    box-sizing: border-box;
+    margin: 5px 0;
+    padding: 0 2px;
+    position: relative;
+    width: 100%;
+  }
+
+  .meter-value {
+    background-color: #fff;
+    border-radius: 3px;
+    height: 6px;
   }
 </style>
