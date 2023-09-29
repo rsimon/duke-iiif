@@ -4,6 +4,7 @@
   import { OpenSeadragonAnnotator } from '@annotorious/svelte';
   import Storage from './Storage/Storage.svelte';
   import { Inspector } from './Inspector';
+  import Tooltip from './Tooltip/Tooltip.svelte';
 
   let container: HTMLDivElement;
 
@@ -32,6 +33,7 @@
   <OpenSeadragonAnnotator viewer={viewer}>
     <Storage url={`https://iiif.rainersimon.io/annotations/${imagename}.w3c.json`} />
     <Inspector />
+    <Tooltip />
   </OpenSeadragonAnnotator>
 </div>
 
