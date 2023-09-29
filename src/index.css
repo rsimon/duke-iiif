@@ -14,7 +14,7 @@ html, body, #app {
 }
 
 .panel {
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(14px);
   background-color: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;

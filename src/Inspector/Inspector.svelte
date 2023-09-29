@@ -12,11 +12,11 @@
 
   const { store, viewport } = anno.state;
 
-  $: totals = getTotals($store);
+  $: totals = getStats($store);
 
   $: viewportCounts = getViewportCounts($viewport);
 
-  const getTotals = (annotations: ImageAnnotation[]) => {
+  const getStats = (annotations: ImageAnnotation[]) => {
     // Each annotation has one class - aggregate!
     const histogram = new Map<string, number>;
 
@@ -35,7 +35,8 @@
   }
 
   const getViewportCounts = (annotationIds: string[]) => {
-    console.log('get viewport counts');
+    const annotations = annotationIds.map(store.getAnnotation);
+    return getStats(annotations);
   }
 </script>
 
@@ -44,14 +45,19 @@
     {@const max = totals[0][1]}
     <ul class="stats">
       {#each totals as [label, count]}
+        {@const inViewport = viewportCounts.find(([l,]) => l === label)}
         <li>
           <span class="label">
-            {label} <span class="count">{count}</span>
+            {label} <span class="count">{inViewport ? inViewport[1] : 0} / {count}</span>
           </span>
           <div class="meter-wrapper">
             <div 
-              class="meter-value" 
+              class="meter-value-full" 
               style={`width: ${100 * (count / max)}%; background-color:${$legend[label]}`} />
+
+            <div 
+              class="meter-value-viewport" 
+              style={`width: ${100 * ((inViewport ? inViewport[1] : 0) / max)}%; background-color:${$legend[label]}`} />
           </div> 
         </li>
       {/each}
@@ -62,8 +68,8 @@
 <style>
   .inspector {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 10px;
+    top: 10px;
   }
 
   ul {
@@ -73,7 +79,7 @@
   }
 
   li {
-    margin-bottom: 0.8em;
+    margin-bottom: 1.2em;
   }
 
   .label {
@@ -88,15 +94,23 @@
 
   .meter-wrapper {
     box-sizing: border-box;
-    margin: 0.3em 0;
+    margin: 0.2em 0;
     padding: 0 1px;
     position: relative;
     width: 100%;
   }
 
-  .meter-value {
+  .meter-value-full,
+  .meter-value-viewport {
     background-color: #fff;
     border-radius: 3px;
     height: 6px;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  .meter-value-full {
+    opacity: 0.45;
   }
 </style>
