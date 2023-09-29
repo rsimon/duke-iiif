@@ -47,7 +47,9 @@
       {#each totals as [label, count]}
         {@const inViewport = viewportCounts.find(([l,]) => l === label)}
         <li>
-          <span class="label">
+          <span 
+            class="label"
+            class:disabled={!inViewport}>
             {label} <span class="count">{inViewport ? inViewport[1] : 0} / {count}</span>
           </span>
           <div class="meter-wrapper">
@@ -84,6 +86,10 @@
 
   .label {
     font-size: 12px;
+  }
+
+  .label.disabled {
+    opacity: 0.2;
   }
 
   .count {
