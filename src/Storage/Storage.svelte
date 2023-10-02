@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { AnnotoriousOpenSeadragonAnnotator } from '@annotorious/openseadragon';
-  import { getContext } from 'svelte';
+  import { OpenSeadragonAnnotator } from '@annotorious/openseadragon';
+  import { getContext, onMount } from 'svelte';
 
   export let url: string;
 
-  const anno: AnnotoriousOpenSeadragonAnnotator = getContext('anno');
+  const anno: OpenSeadragonAnnotator = getContext('anno');
 
-  anno.loadAnnotations(url);
+  onMount(() => {
+    anno.loadAnnotations(url);
+  });
 </script>
