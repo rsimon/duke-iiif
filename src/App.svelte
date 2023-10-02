@@ -37,7 +37,8 @@
       adapter: W3CImageFormat(`https://iiif.rainersimon.io/${imagename}/info.json`)
     }}>
 
-    <Storage url={`https://iiif.rainersimon.io/annotations/${imagename}.w3c.json`} />
+    <Storage 
+      url={`https://iiif.rainersimon.io/annotations/${imagename}.w3c.json`} />
 
     <Inspector />
     

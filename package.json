@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/rsimon/duke-iiif#readme",
   "devDependencies": {
+    "@annotorious/core": "^3.0.0-pre-alpha-47",
     "@sveltejs/vite-plugin-svelte": "^2.4.6",
     "@tsconfig/svelte": "^5.0.0",
     "@types/openseadragon": "^3.0.7",
