@@ -71,8 +71,8 @@
     border-color: rgba(255, 255, 255, 0.4);
     color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    font-size: 12px;
-    padding: 4px 8px;
+    font-size: 11px;
+    padding: 4px 10px;
     transition: background-color 150ms, color 150ms;
   }
 
