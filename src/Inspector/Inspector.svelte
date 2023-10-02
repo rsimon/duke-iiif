@@ -77,6 +77,26 @@
     overflow-y: auto;
   }
 
+  .inspector::-webkit-scrollbar {
+    background-color: transparent;
+    width: 14px;
+  }
+
+  .inspector::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .inspector::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    background-clip: content-box;
+    border: 4px solid transparent;
+  }
+
+  .inspector::-webkit-scrollbar-button {
+    display: none;
+  }
+
   ul {
     margin: 0;
     list-style-type: none;

@@ -5,6 +5,7 @@ html, body, #app {
   font-size: 14px;
   height: 100%;
   margin: 0;
+  overflow: hidden;
   padding: 0;
   width: 100%;
 }
