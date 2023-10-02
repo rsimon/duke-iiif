@@ -34,6 +34,10 @@ html, body, #app {
   width: auto;
 }
 
+.a9s-tooltip li {
+  margin-bottom: 0;
+}
+
 .inspector {
   box-sizing: border-box;
   position: absolute;
