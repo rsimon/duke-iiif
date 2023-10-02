@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import OpenSeadragon from 'openseadragon';
   import { OpenSeadragonAnnotator } from '@annotorious/svelte';
+  import { W3CImageFormat } from '@annotorious/openseadragon';
   import Storage from './Storage/Storage.svelte';
   import { Inspector } from './Inspector';
   import Tooltip from './Tooltip/Tooltip.svelte';
@@ -30,7 +31,11 @@
     bind:this={container}
     class="openseadragon" />
 
-  <OpenSeadragonAnnotator viewer={viewer}>
+  <OpenSeadragonAnnotator 
+    viewer={viewer}
+    opts={{
+      adapter: W3CImageFormat(`https://iiif.rainersimon.io/${imagename}/info.json`)
+    }}>
     <Storage url={`https://iiif.rainersimon.io/annotations/${imagename}.w3c.json`} />
     <Inspector />
     <Tooltip />
