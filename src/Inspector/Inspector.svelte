@@ -19,15 +19,7 @@
   // Annotation ID -> area
   const areaIndex = new Map<string, number>();
 
-  let panel = 'by-count';
-
-  const onToggle = () => {
-    if (panel === 'by-count') {
-      panel = 'by-area';
-    } else {
-      panel = 'by-count';
-    }
-  }
+  let panel: 'by-count' | 'by-area' = 'by-count';
 
   onMount(() => {
     const onStoreChange = ((event: StoreChangeEvent<ImageAnnotation>) => {
@@ -49,8 +41,14 @@
 </script>
 
 <div class="overlay inspector">
-  <button 
-    on:click={onToggle}>Toggle</button>
+  <div class="buttons">
+    <button
+      on:click={() => panel = 'by-area'}
+      class:active={panel === 'by-area'}>By Area</button>
+    <button 
+      on:click={() => panel = 'by-count'}
+      class:active={panel === 'by-count'}>By Count</button>
+  </div>
   
   {#if panel === 'by-count'}
     <ByCount />
@@ -58,3 +56,35 @@
     <ByArea areaIndex={areaIndex} />
   {/if}
 </div>
+
+<style>
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: flex-end;
+    padding-bottom: 0.8em;
+  }
+
+  button {
+    all: unset;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 8px;
+    transition: background-color 150ms, color 150ms;
+  }
+
+  button.active {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  button:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>

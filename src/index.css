@@ -21,8 +21,8 @@ html, body, #app {
   border-radius: 4px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.8);
-  padding: 18px;
-  width: 300px;
+  padding: 15px;
+  width: 320px;
 }
 
 .a9s-tooltip {
@@ -74,11 +74,21 @@ li {
 }
 
 .label {
+  display: flex;
   font-size: 12px;
+  gap: 3px;
 }
 
 .label.disabled {
   opacity: 0.2;
+}
+
+.class-label {
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .count {

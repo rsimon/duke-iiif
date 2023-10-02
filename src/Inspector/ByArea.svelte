@@ -41,7 +41,10 @@
     return getAreaStats(annotations);
   }
 
-  const percent = (n: number) => (100 * n / totalArea).toFixed(1);
+  const percent = (n: number) => {
+    const value = 100 * n / totalArea;
+    return value > 3 ? value.toFixed(0) : value.toFixed(1);
+  }
 </script>
 
 {#if totalAreaStats?.length > 0}
@@ -53,8 +56,7 @@
         <span 
           class="label"
           class:disabled={!inViewport}>
-          {label} 
-          
+          <span class="class-label">{label}</span> 
           <span class="count">{inViewport ? percent(inViewport[1]) : 0}% / {percent(count)}%</span>
         </span>
         <div class="meter-wrapper">
