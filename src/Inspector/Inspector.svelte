@@ -61,15 +61,14 @@
   .buttons {
     display: flex;
     flex-direction: row;
-    gap: 5px;
     justify-content: flex-end;
     padding-bottom: 0.8em;
   }
 
   button {
     all: unset;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 4px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.4);
     color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     font-size: 12px;
@@ -77,9 +76,19 @@
     transition: background-color 150ms, color 150ms;
   }
 
+  button:first-child {
+    border-radius: 6px 0 0 6px;
+    border-width: 1px 0 1px 1px;
+  }
+
+  button:last-child {
+    border-radius: 0 6px 6px 0;
+    border-width: 1px 1px 1px 0;
+  }
+
   button.active {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0);
     color: rgba(0, 0, 0, 0.8);
   }
 
