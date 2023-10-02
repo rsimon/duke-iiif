@@ -1,23 +1,13 @@
 <script lang="ts">
-  import { getContext, onMount } from 'svelte';
-  import { Annotation, ImageAnnotation } from '@annotorious/openseadragon';
-  import { SvelteAnnotator } from '@annotorious/svelte';
+  import { getContext } from 'svelte';
+  import { Annotation } from '@annotorious/openseadragon';
+  import { MouseOverTooltip } from '@annotorious/svelte';
   import Time from 'svelte-time';
   import { colorTheme } from '../colorTheme';
-
-  const anno = getContext<SvelteAnnotator<ImageAnnotation>>('anno');
-
-  const { store, hover } = anno.state;
 
   const { legend } = colorTheme;
 
   const viewer = getContext<OpenSeadragon.Viewer>('viewer');
-
-  let top: number;
-
-  let left: number;
-
-  $: hovered = $hover ? store.getAnnotation($hover) : undefined;
 
   const getClass= (annotation: Annotation): string | undefined  =>
     annotation.bodies.find(b => b.purpose === 'classifying')?.value;
@@ -40,62 +30,35 @@
 
     return timestamps[timestamps.length - 1];
   }
-  
-  onMount(() => {
-    const onPointerMove = (event: PointerEvent) => {
-      const { offsetX, offsetY } = event;
-
-      left = offsetX;
-      top = offsetY;
-    }
-
-    viewer.element.addEventListener('pointermove', onPointerMove);
-
-    return () => {
-      viewer.element.removeEventListener('pointermove', onPointerMove);
-    }
-  });
 </script>
 
-{#if $hover}
-  <div 
-    class="overlay tooltip" 
-    style={`left:${left}px; top:${top}px;`}>
-    <h1>
-      <span class="pip" style={`background-color:${$legend[getClass(hovered)]}`} />
-      {getClass(hovered)}
-    </h1>
-    <ul class="tags">
-      {#each getTags(hovered) as tag}
-        <li>{tag.substring(tag.indexOf(':') + 1).trim()}</li>
+<MouseOverTooltip
+  container={viewer.element}
+  let:hovered>
+  
+  <h1>
+    <span class="pip" style={`background-color:${$legend[getClass(hovered)]}`} />
+    {getClass(hovered)}
+  </h1>
+  <ul class="tags">
+    {#each getTags(hovered) as tag}
+      <li>{tag.substring(tag.indexOf(':') + 1).trim()}</li>
+    {/each}
+  </ul>
+
+  <div class="footer">
+    <ul class="contributors">
+      {#each getContributors(hovered) as contributor}
+        <li>{contributor}</li>
       {/each}
     </ul>
 
-    <div class="footer">
-      <ul class="contributors">
-        {#each getContributors(hovered) as contributor}
-          <li>{contributor}</li>
-        {/each}
-      </ul>
-
-      <Time timestamp={getLastUpdate(hovered)} />
-    </div>
+    <Time timestamp={getLastUpdate(hovered)} />
   </div>
-{/if}
+</MouseOverTooltip>
 
 <style>
-  .overlay.tooltip {
-    border-style: solid;
-    border-width: 4px 0 0 0;
-    margin: 10px 0 0 10px;
-    max-width: 290px;
-    padding: 10px;
-    pointer-events: none;
-    position: absolute;
-    width: auto;
-  }
-
-  .overlay.tooltip h1 {
+  h1 {
     font-size: 14px;
     margin: 0 1em 0 0;
     padding: 0 0 0.5em 0;
@@ -105,7 +68,7 @@
     white-space: nowrap;
   }
 
-  .overlay.tooltip .pip {
+  .pip {
     border-radius: 50%;
     display: inline-block;
     margin: 0 0.2em 1px 0;

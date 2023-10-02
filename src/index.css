@@ -14,7 +14,7 @@ html, body, #app {
   outline: none;
 }
 
-.overlay {
+.overlay, .a9s-tooltip {
   backdrop-filter: blur(14px);
   background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -23,4 +23,13 @@ html, body, #app {
   color: rgba(255, 255, 255, 0.8);
   padding: 18px;
   width: 300px;
+}
+
+.a9s-tooltip {
+  margin: 10px 0 0 10px;
+  max-width: 290px;
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  width: auto;
 }
