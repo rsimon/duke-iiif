@@ -74,7 +74,7 @@
     right: 10px;
     top: 10px;
     max-height: calc(100vh - 20px);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   ul {
